@@ -258,6 +258,13 @@
           The release is self-signed, so macOS stops it the first time and asks whether you trust
           it. That is expected. Open it once, confirm, and it runs normally from then on.
         </p>
+        <div class="rls" data-release hidden>
+          <span class="rls-l">Latest release</span>
+          <span class="rls-t"></span>
+          <span class="rls-d"></span>
+          <span class="rls-n"></span>
+        </div>
+
         <p class="tight">Needs macOS 12.0 Monterey or newer.</p>
       </div>
       <div class="split-side">
@@ -326,6 +333,27 @@
     <span>Brought to you by <a href="https://www.cipher.org.uk" rel="noopener">cipher.org.uk</a></span>
   </div>
 </footer>
+
+<script>
+(function () {
+  var box = document.querySelector('[data-release]');
+  if (!box) return;
+  fetch('https://api.github.com/repos/cphr/karmapro/releases/latest')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (d) {
+      var notes = (d.body || '').trim();
+      if (!d.tag_name || !notes) return;
+      box.querySelector('.rls-t').textContent = d.tag_name;
+      box.querySelector('.rls-d').textContent =
+        new Date(d.published_at).toLocaleDateString('en-GB', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        });
+      box.querySelector('.rls-n').textContent = notes;
+      box.hidden = false;
+    })
+    .catch(function () { /* offline, rate limited or no release: stay hidden */ });
+})();
+</script>
 
 </body>
 </html>
