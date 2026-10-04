@@ -73,6 +73,7 @@
       </div>
       <figure class="hero-shot">
         <img src="assets/Karmapro.gif" width="720" height="540" alt="Karma Pro open on a macOS project with the file tree, source viewer and analysis panes.">
+        <figcaption class="shot-fine" data-commit hidden></figcaption>
       </figure>
     </div>
     <div class="dim" aria-hidden="true"><i></i><i></i></div>
@@ -353,6 +354,23 @@
       box.hidden = false;
     })
     .catch(function () { /* offline, rate limited or no release: stay hidden */ });
+})();
+
+(function () {
+  var el = document.querySelector('[data-commit]');
+  if (!el) return;
+  fetch('https://api.github.com/repos/cphr/karmapro/commits?per_page=1')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (list) {
+      var c = list && list[0];
+      if (!c || !c.sha || !c.commit) return;
+      el.textContent = 'Last commit ' + c.sha.slice(0, 7) + ' \u00b7 ' +
+        new Date(c.commit.author.date).toLocaleDateString('en-GB', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        });
+      el.hidden = false;
+    })
+    .catch(function () { /* offline, rate limited or no commits: stay hidden */ });
 })();
 </script>
 
