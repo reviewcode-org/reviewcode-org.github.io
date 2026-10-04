@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karma Pro</title>
+<meta name="description" content="Karma Pro is an open source macOS source-code security review tool: AST and heuristic scanning with inter-procedural taint tracking, a Bayesian classifier trained on real patches, call graphs, data-flow diagrams and an AI assistant.">
+<meta property="og:site_name" content="reviewcode.org">
+<meta property="og:url" content="https://reviewcode.org/">
+<meta property="og:title" content="Karma Pro">
+<meta property="og:description" content="Static analysis that reads your source the way an attacker reads it. macOS, open source, Apache-2.0.">
+<link rel="canonical" href="https://reviewcode.org/">
+<link rel="icon" href="assets/icon-256.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PY8FQVW70F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PY8FQVW70F');
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#top">
+      <img src="assets/appicon-mark.png" width="824" height="824" alt="">
+      <b>Karma<em>Pro</em></b>
+    </a>
+    <span class="handle"><span class="at">@</span>reviewcode.org</span>
+    <nav class="top-nav">
+      <a href="#sheet">Capabilities</a>
+      <a href="#findings">Findings</a>
+      <a href="#graphs">Diagrams</a>
+      <a href="#prs">Pull requests</a>
+      <a href="#download">Install</a>
+      <a href="#build">Build</a>
+    </nav>
+    <a class="top-cta" href="https://github.com/cphr/karmapro/releases/latest/download/Karma.pro.dmg" rel="noopener">Download</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ HERO ═════════════════════════════ -->
+  <section class="hero wrap" id="top">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">macOS · open source · Apache-2.0</p>
+        <h1>
+          <span>The code</span>
+          <span>security <em>review</em></span>
+          <span class="outline">tool</span>
+        </h1>
+        <p class="hero-sub">
+          Static analysis that reads your source, inter-procedural taint tracking over parse trees, a
+          heuristic engine, a Bayesian classifier trained on software patches and AI scanning. Then the
+          graphs, the flows and the entry points, from the same index.
+        </p>
+        <div class="hero-cta">
+          <a class="btn" href="https://github.com/cphr/karmapro/releases/latest/download/Karma.pro.dmg" rel="noopener">Download the DMG</a>
+          <a class="btn alt" href="https://github.com/cphr/karmapro" rel="noopener">Get the source</a>
+        </div>
+      </div>
+      <figure class="hero-shot">
+        <img src="assets/Karmapro.gif" width="720" height="540" alt="Karma Pro open on a macOS project with the file tree, source viewer and analysis panes.">
+      </figure>
+    </div>
+    <div class="dim" aria-hidden="true"><i></i><i></i></div>
+  </section>
+
+  <!-- ══ TITLE BLOCK FIGURES ══════════════ -->
+  <div class="figures">
+    <div class="wrap figures-in">
+      <div class="fig"><b>14</b><span>languages parsed</span></div>
+      <div class="fig"><b>4</b><span>independent engines</span></div>
+    </div>
+  </div>
+
+  <!-- ══ CAPABILITY SHEET ════════════════ -->
+  <section class="wrap band" id="sheet">
+    <p class="label">Capabilities</p>
+    <div class="ledger">
+      <div class="lg-h">
+        <span>Capability</span><span>What it does</span><span>Where you see it</span>
+      </div>
+
+      <div class="lg-r"><span class="lg-a">Inter-procedural taint</span><span class="lg-b">Follows a value from its source to the sink that consumes it, across function boundaries and across files.</span><span class="lg-c">Dataflow diagram</span></div>
+      <div class="lg-r"><span class="lg-a">Per-language AST</span><span class="lg-b">A parser per language, so it knows what a loop, a class method and a function body are. Not regex.</span><span class="lg-c">Source viewer, complexity</span></div>
+      <div class="lg-r"><span class="lg-a">Heuristic engine</span><span class="lg-b">Matches known-dangerous constructs and reports them with the pattern it recognised.</span><span class="lg-c">Findings list</span></div>
+      <div class="lg-r"><span class="lg-a">AI security scanning</span><span class="lg-b">A model reads each file and reports what it finds, alongside the deterministic results.</span><span class="lg-c">Findings list, tagged AI</span></div>
+      <div class="lg-r"><span class="lg-a">Bayesian classifier</span><span class="lg-b">Trained on patch files, scores every line on the probability that it is a defect.</span><span class="lg-c">ML heatmap</span></div>
+      <div class="lg-r"><span class="lg-a">Reachability</span><span class="lg-b">Walks the whole caller chain to the top of the tree and ends Remote, Local, or nowhere.</span><span class="lg-c">Reachability graph</span></div>
+      <div class="lg-r"><span class="lg-a">External entries</span><span class="lg-b">Every untrusted input it can find, grouped and tagged Remote or Local.</span><span class="lg-c">Entries diagram</span></div>
+      <div class="lg-r"><span class="lg-a">Control flow</span><span class="lg-b">A flowchart per function with cyclomatic complexity, branches and loops. Pan, zoom, click through.</span><span class="lg-c">Flow panel</span></div>
+      <div class="lg-r"><span class="lg-a">Follow the variable</span><span class="lg-b">Every use of a variable, with callees expanded recursively.</span><span class="lg-c">Variable flow</span></div>
+      <div class="lg-r"><span class="lg-a">Backtrace analyser</span><span class="lg-b">Paste a crash or stack trace, get a clickable diagram resolved against the open project.</span><span class="lg-c">Backtrace window</span></div>
+      <div class="lg-r"><span class="lg-a">Debugger simulator</span><span class="lg-b">Step Over, Into, Back, Reset and Play with editable values, without rebuilding. (experimental)</span><span class="lg-c">Step controls</span></div>
+      <div class="lg-r"><span class="lg-a">Class usage</span><span class="lg-b">An animated graph with the class at the centre and every construction site beneath it.</span><span class="lg-c">Class diagram</span></div>
+      <div class="lg-r"><span class="lg-a">Pull request monitoring</span><span class="lg-b">Watches repositories, scans a PR on request, and reports the delta.</span><span class="lg-c">Menu bar</span></div>
+      <div class="lg-r"><span class="lg-a">AI assistant</span><span class="lg-b">OpenRouter or Ollama, anchored to the open project. Ask about a line and get an answer about your code.</span><span class="lg-c">Side panel</span></div>
+      <div class="lg-r"><span class="lg-a">Bugs tracker</span><span class="lg-b">Severity, exploitability, status, package and version, persisted locally across restarts.</span><span class="lg-c">Bugs tab</span></div>
+      <div class="lg-r"><span class="lg-a">Research wiki</span><span class="lg-b">Private pages shared across projects, autosaved, exportable as an encrypted archive.</span><span class="lg-c">Wiki tab</span></div>
+      <div class="lg-r"><span class="lg-a">Reports</span><span class="lg-b">Markdown you can save, a side-by-side diff against a base, and a JSON backup of everything. (Only if you monitor PRs)</span><span class="lg-c">Report panel</span></div>
+    </div>
+  </section>
+
+  <!-- ══ FINDINGS ════════════════════════ -->
+  <section class="wrap band" id="findings">
+    <p class="label">Findings</p>
+    <div class="split">
+      <div class="split-copy">
+        <h2>Every finding<br>says how it was found.</h2>
+        <p>
+          A structural finding, a matched pattern and a model opinion are not the same claim, so the
+          app never mixes them. Each row carries the engine that produced it, and a grade that weighs exploitability and reachability, not just severity.
+        </p>
+        <p>
+          Critical, High, Medium and Low are assigned per finding. A model opinion is tagged
+          <b>AI</b> and sits with the rest rather than in a separate list, so a reviewer sees the
+          whole picture in one place.
+        </p>
+      </div>
+      <div class="split-side">
+        <table class="ftab">
+          <thead>
+            <tr><th>Grade</th><th>Engine</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="g crit">Critical</td><td><span class="tag ast">AST</span></td></tr>
+            <tr><td class="g crit">Critical</td><td><span class="tag ai">AI</span></td></tr>
+            <tr><td class="g high">High</td><td><span class="tag hot">Heuristic</span></td></tr>
+            <tr><td class="g high">High</td><td><span class="tag ast">AST</span></td></tr>
+            <tr><td class="g med">Medium</td><td><span class="tag ai">AI</span></td></tr>
+            <tr><td class="g low">Low</td><td><span class="tag ast">AST</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DATAFLOWS ════════════════════════ -->
+  <section class="wrap band" id="graphs">
+    <p class="label">Diagrams</p>
+    <div class="split-copy">
+      <h2>Dataflows</h2>
+      <p>
+        Every diagram is generated from the project you have open. Click a node and you are on
+        the line.
+      </p>
+    </div>
+
+    <div class="duo">
+      <figure class="drawing">
+        <img src="assets/shot-main.png" width="571" height="400" loading="lazy" alt="Karma Pro open on a macOS project with the file tree, source viewer and analysis panes.">
+      </figure>
+      <div class="notes">
+        <div class="notes-r"><span>Control flow</span><b>A flowchart per function, with cyclomatic complexity, branches and loops</b></div>
+        <div class="notes-r"><span>Follow the variable</span><b>Every use of a variable, with callees expanded recursively</b></div>
+        <div class="notes-r"><span>External entries</span><b>Every untrusted input, grouped and tagged Remote or Local</b></div>
+        <div class="notes-r"><span>Reachability</span><b>The caller chain walked to the top, ending Remote, Local or nowhere</b></div>
+        <div class="notes-r"><span>Backtrace</span><b>A pasted crash or stack trace resolved against the open project</b></div>
+        <div class="notes-r"><span>Class usage</span><b>The class at the centre with every construction site beneath it</b></div>
+        <div class="notes-r"><span>Call graph</span><b>What calls the function you clicked, in the same file</b></div>
+        <div class="notes-r"><span>Complexity</span><b>Functions in source order against cyclomatic complexity</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PULL REQUEST MONITORING ══════════ -->
+  <section class="wrap band" id="prs">
+    <p class="label">Pull requests</p>
+    <div class="split">
+      <div class="split-copy">
+        <h2>It watches the repos<br>you point it at.</h2>
+        <p>
+          The menu bar item keeps a list of repositories and the pull requests open on them, and
+          tells you when changes. Monitoring stays switched off until you turn it on.
+        </p>
+        <p>
+          <b>Review</b> is the only action that scans. Not Now and Ignore never do, so dismissing
+          a notification can never start a scan on its own.
+        </p>
+      </div>
+      <div class="split-side">
+        <div class="notes">
+          <div class="notes-r"><span>Hosts</span><b>GitHub, GitLab, Bitbucket, Gitea and Forgejo</b></div>
+          <div class="notes-r"><span>Cadence</span><b>Polls every 15 minutes and compares against the previous poll</b></div>
+          <div class="notes-r"><span>Trigger</span><b>Review only, Not Now and Ignore never scan</b></div>
+          <div class="notes-r"><span>Force-push</span><b>Recognised by head commit rather than title, so a rewritten PR is not missed</b></div>
+          <div class="notes-r"><span>Depth</span><b>Changed files only, or the whole project when cross-file taint matters</b></div>
+          <div class="notes-r"><span>Output</span><b>A saveable Markdown report and a side-by-side diff with the findings against it</b></div>
+          <div class="notes-r"><span>Private repos</span><b>Read-only token in your Keychain, it never approves, comments or posts</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="figpair">
+      <figure class="fg win">
+        <img src="assets/shot-pr.png" width="571" height="400" loading="lazy" alt="Menu bar menu listing watched repositories and the pull requests open on them.">
+        <figcaption>Monitored repositories</figcaption>
+      </figure>
+      <figure class="fg">
+        <img src="assets/shot-menubar.png" width="619" height="279" loading="lazy" alt="Menu bar status item with the repository monitoring entries.">
+        <figcaption>The menu bar item</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ ASSISTANT (inverted) ════════════ -->
+  <section class="paper" id="assistant">
+    <div class="wrap band">
+      <p class="label">Assistant</p>
+      <div class="split">
+        <div class="split-copy">
+          <h2>Ask about the code<br>you reviewing.</h2>
+          <p>
+            Connect OpenRouter, paste the key, press Connect, and pick any model: Claude, GPT-4o,
+            Gemini, Llama, DeepSeek, Mistral. Or point it at Ollama and stay on the machine. The open
+            project's path travels with every prompt in the system message, so the answer is about
+            your code.
+          </p>
+          <p>
+            Right-click any line for <b>(AI) How to fix it</b>, with the surrounding context sent
+            along. The same connection also runs as a scanning pass, which is where the AI-tagged
+            findings above come from.
+          </p>
+          <p class="tight">
+            Keys are stored on your machine and remembered across launches. Models are listed live
+            from OpenRouter, with a refresh button. You also need a valid token at the AI assistant
+            in order to perform AI scans.
+          </p>
+        </div>
+        <div class="split-side">
+          <figure class="shot">
+            <img src="assets/ai-assistant.png" width="619" height="399" loading="lazy" alt="Karma Pro's AI assistant panel, with the conversation and the model selector.">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INSTALL ══════════════════════════ -->
+  <section class="wrap band" id="download">
+    <p class="label">Install</p>
+    <div class="split">
+      <div class="split-copy">
+        <h2>Installation</h2>
+        <p>
+          The release is self-signed, so macOS stops it the first time and asks whether you trust
+          it. That is expected. Open it once, confirm, and it runs normally from then on.
+        </p>
+        <p class="tight">Needs macOS 12.0 Monterey or newer.</p>
+      </div>
+      <div class="split-side">
+        <div class="titleblock">
+          <div class="tb-r"><span>Release</span><b>Karma.pro.dmg</b></div>
+          <div class="tb-r"><span>Signing</span><b>Self-signed, ad-hoc</b></div>
+          <div class="tb-r"><span>Requires</span><b>macOS 12.0 Monterey+</b></div>
+          <div class="tb-r"><span>Architecture</span><b>Apple silicon, Intel</b></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="steps-note">
+      If the Open option never appears, the quarantine attribute is still on the bundle.
+    </p>
+    <p class="steps-note">
+      Clear it once with <code>xattr -d com.apple.quarantine "/Applications/Karma Pro.app"</code>
+    </p>
+  </section>
+
+  <!-- ══ BUILD TITLE BLOCK ═══════════════ -->
+  <section class="wrap band" id="build">
+    <p class="label">Build</p>
+    <div class="split">
+      <div class="split-copy">
+        <h2>Compile it<br>yourself.</h2>
+        <p>
+          One Swift package, one script. <code>./build.sh</code> compiles everything in
+          <code>Sources/</code> and assembles <code>Karma Pro.app</code> in the repository root.
+          Xcode 14 or newer, or Swift 5.7 and up.
+        </p>
+      </div>
+      <div class="split-side">
+        <div class="titleblock">
+          <div class="tb-r"><span>Source</span><b>github.com/cphr/karmapro</b></div>
+          <div class="tb-r"><span>Toolchain</span><b>Swift 5.7 · Xcode 14+</b></div>
+          <div class="tb-r"><span>Target</span><b>x86_64-apple-macos12.0</b></div>
+          <div class="tb-r"><span>Output</span><b>Karma Pro.app</b></div>
+          <div class="tb-r"><span>Signing</span><b>Ad-hoc</b></div>
+          <div class="tb-r"><span>Licence</span><b>Apache-2.0</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="final">
+  <div class="wrap final-in">
+    <h2>Start reviewing</h2>
+    <div class="final-cta">
+      <a class="btn dark" href="https://github.com/cphr/karmapro/releases/latest/download/Karma.pro.dmg" rel="noopener">Download the DMG</a>
+      <a class="btn ghostdark" href="https://github.com/cphr/karmapro" rel="noopener">Get the source</a>
+    </div>
+    <p class="final-fine">
+      Self-signed release · macOS 12.0 Monterey and newer
+    </p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="logo small"><img src="assets/appicon-mark.png" width="824" height="824" alt="">Karma<em>Pro</em></span>
+    <span class="ticks" aria-hidden="true">|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|</span>
+    <span><a href="https://reviewcode.org/">reviewcode.org</a></span>
+    <span>Brought to you by <a href="https://www.cipher.org.uk" rel="noopener">cipher.org.uk</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
