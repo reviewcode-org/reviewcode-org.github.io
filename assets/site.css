@@ -266,6 +266,8 @@ h1 .outline{color:transparent;-webkit-text-stroke:1.5px var(--accent-2)}
 .steps-note + .steps-note{margin-top:10px}
 .steps-note + .steps-note code{font-size:12.24px;display:block;margin-top:4px}
 .steps-note code{color:var(--accent-2);word-break:break-all}
+.steps-cta{margin-top:20px}
+.steps-cta .btn.alt{padding:12px 22px;font-size:13.5px}
 
 /* ── build title block ────────────────────── */
 .titleblock{border:1px solid var(--line-2);background:rgba(16,19,24,.7)}
