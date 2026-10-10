@@ -56,7 +56,7 @@
       <div class="split-copy">
         <h2>Bayes scanning</h2>
         <p>
-          The Bayesian classifier is an ML classifier trained on patches (diffs) from projects. It learns statistical associations between code tokens/contexts and patch changes to score lines with a probability that they correspond to a defect. In practice this denotes suspicious lines in the ML heatmap and complements deterministic AST/heuristic checks. See <a href="https://cipher.org.uk/2026/02/08/Karma-Automated-source-code-defect-identification-method/" rel="noopener">Karma Automated source code defect identification method</a>.
+          The Bayesian classifier is an ML classifier trained on patches (diffs) from projects. It learns statistical associations between code tokens/contexts and patch changes to score lines with a probability that they correspond to a defect. In practice this denotes suspicious lines in the ML heatmap and complements deterministic AST/heuristic checks. (See <a href="https://cipher.org.uk/2026/02/08/Karma-Automated-source-code-defect-identification-method/" rel="noopener">Karma Automated source code defect identification method</a>.)
         </p>
         
         
@@ -83,7 +83,7 @@
 
     <div class="ledger" id="models-ledger">
       <div class="lg-h">
-        <span>Model file</span><span>Description</span><span>Full URL (copy)</span>
+        <span>Model file</span><span>Size</span><span>Full URL (copy)</span>
       </div>
       <div id="models-body"></div>
     </div>
@@ -124,7 +124,7 @@
         if(!name) return;
         var ext = name.split('.').pop().toLowerCase();
         if (ext !== 'karmamodel') return;
-        var desc = 'Bayesian classifier model (.karmamodel)';
+        var desc = formatSize(item.size);
         var row = document.createElement('div');
         row.className = 'lg-r';
         var fullUrl = 'https://huggingface.co/cphr/KarmaPro/blob/main/'+name;
@@ -155,9 +155,17 @@
     })
     .catch(function(){
       // fallback: link to tree
-      body.innerHTML = '<div class="lg-r"><span class="lg-a">See all .karmamodel files</span><span class="lg-b">Models hosted on Hugging Face</span><span class="lg-c"><a href="https://huggingface.co/cphr/KarmaPro/tree/main" rel="noopener">open tree</a></span></div>';
+      body.innerHTML = '<div class="lg-r"><span class="lg-a">See all .karmamodel files</span><span class="lg-b">—</span><span class="lg-c"><a href="https://huggingface.co/cphr/KarmaPro/tree/main" rel="noopener">open tree</a></span></div>';
     });
   function escapeHtml(s){ return String(s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m];}); }
+  function formatSize(bytes){
+    if(typeof bytes !== 'number' || isNaN(bytes) || bytes < 0) return '—';
+    var units = ['B','KB','MB','GB','TB'];
+    var i = 0;
+    while(bytes >= 1024 && i < units.length - 1){ bytes /= 1024; i++; }
+    var val = i === 0 ? String(bytes) : bytes.toFixed(bytes >= 100 ? 0 : (bytes >= 10 ? 1 : 2));
+    return val + ' ' + units[i];
+  }
   function copyText(text){
     if(navigator.clipboard && navigator.clipboard.writeText){
       return navigator.clipboard.writeText(text).catch(function(){ return fallbackCopy(text); });
