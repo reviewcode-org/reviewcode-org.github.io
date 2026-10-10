@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karma Pro — Models</title>
+<meta name="description" content="Bayesian classifier models for Karma Pro hosted on Hugging Face: how Bayes scanning works and how to import models in Karma Pro.">
+<meta property="og:site_name" content="reviewcode.org">
+<meta property="og:url" content="https://reviewcode.org/models/">
+<meta property="og:title" content="Karma Pro — Models">
+<meta property="og:description" content="Bayesian classifier trained on patches: how Bayes scanning works and a dynamic list of KarmaPro models from Hugging Face.">
+<link rel="canonical" href="https://reviewcode.org/models/">
+<link rel="icon" href="../assets/icon-256.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PY8FQVW70F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PY8FQVW70F');
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="../index.html">
+      <img src="../assets/appicon-mark.png" width="824" height="824" alt="">
+      <b>Karma<em>Pro</em></b>
+    </a>
+    <span class="handle"><span class="at">@</span>reviewcode.org</span>
+    <nav class="top-nav">
+      <a href="../index.html#sheet">Capabilities</a>
+      <a href="../index.html#findings">Findings</a>
+      <a href="../index.html#graphs">Diagrams</a>
+      <a href="../index.html#prs">Pull requests</a>
+      <a href="../index.html#download">Install</a>
+      <a href="../index.html#build">Build</a>
+    </nav>
+    <a class="top-cta" href="https://github.com/cphr/karmapro/releases/latest/download/Karma.pro.dmg" rel="noopener">Download</a>
+    <a class="badge" href="/models/" title="Bayesian classifier models">Models</a>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap band" id="how">
+    <p class="label">How it works</p>
+    <div class="split">
+      <div class="split-copy">
+        <h2>Bayes scanning on patches</h2>
+        <p>
+          The Bayesian classifier is an ML classifier trained on patches (diffs) from projects. It learns statistical associations between code tokens/contexts and patch changes to score lines with a probability that they correspond to a defect. In practice this denotes suspicious lines in the ML heatmap and complements deterministic AST/heuristic checks. See <a href="https://cipher.org.uk/2026/02/08/Karma-Automated-source-code-defect-identification-method/" rel="noopener">Karma Automated source code defect identification method</a>.
+        </p>
+        
+        
+      </div>
+      <div class="split-side">
+        <div class="titleblock">
+          <div class="tb-r"><span>Engine</span><b>Bayesian classifier (ML)</b></div>
+          <div class="tb-r"><span>Training</span><b>ML classifier trained on patches</b></div>
+          <div class="tb-r"><span>UI</span><b>ML heatmap</b></div>
+          <div class="tb-r"><span>Import</span><b>Import directly from the web in Karma Pro (paste full model URL) or use a local file</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap band" id="models">
+    <p class="label">Models</p>
+    <div class="split-copy" style="margin-bottom:28px">
+      <h2>Available Bayesian models</h2>
+      <p>
+        You can copy the full URL of any model below and import it directly from the web in Karma Pro.
+      </p>
+    </div>
+
+    <div class="ledger" id="models-ledger">
+      <div class="lg-h">
+        <span>Model file</span><span>Description</span><span>Full URL (copy)</span>
+      </div>
+      <div id="models-body"></div>
+    </div>
+    <p class="tight" style="margin-top:12px">If the list doesn’t load, open the Hugging Face page directly: <a href="https://huggingface.co/cphr/KarmaPro/tree/main" rel="noopener">cphr/KarmaPro/tree/main</a>.</p>
+  </section>
+
+</main>
+
+<section class="final">
+  <div class="wrap final-in">
+    <h2>Use these models in Karma Pro</h2>
+    <div class="final-cta">
+      <a class="btn dark" href="../index.html#download">Download Karma Pro</a>
+          </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="logo small"><img src="../assets/appicon-mark.png" width="824" height="824" alt="">Karma<em>Pro</em></span>
+    <span class="ticks" aria-hidden="true">|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|</span>
+    <span><a href="https://reviewcode.org/">reviewcode.org</a></span>
+    <span>Brought to you by <a href="https://www.cipher.org.uk" rel="noopener">cipher.org.uk</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var body = document.getElementById('models-body');
+  if(!body) return;
+  var url = 'https://huggingface.co/api/models/cphr/KarmaPro/tree/main';
+  fetch(url).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(list){
+      if(!Array.isArray(list) || list.length===0) throw new Error('empty');
+      body.innerHTML = '';
+      list.forEach(function(item){
+        var name = item.path || item.name || '';
+        if(!name) return;
+        var ext = name.split('.').pop().toLowerCase();
+        if (ext !== 'karmamodel') return;
+        var desc = 'Bayesian classifier model (.karmamodel)';
+        var row = document.createElement('div');
+        row.className = 'lg-r';
+        var fullUrl = 'https://huggingface.co/cphr/KarmaPro/blob/main/'+name;
+        row.innerHTML = '<span class="lg-a">'+escapeHtml(name)+'</span><span class="lg-b">'+escapeHtml(desc)+'</span><span class="lg-c"></span>';
+        var cell = row.querySelector('.lg-c');
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.readOnly = true;
+        input.value = fullUrl;
+        input.style.cssText = 'width:240px;font-family:var(--mono);font-size:11px;background:transparent;color:var(--mute);border:1px solid var(--line-2);padding:4px 6px';
+        input.onclick = function(){ this.select(); };
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = 'copy';
+        button.style.cssText = 'font-family:var(--mono);font-size:11px;background:transparent;color:var(--accent);border:1px solid var(--line-2);padding:4px 8px;cursor:pointer';
+        button.onclick = function(){
+          var btn = this;
+          copyText(fullUrl).then(function(){
+            btn.textContent = 'copied';
+            setTimeout(function(){ btn.textContent = 'copy'; }, 1200);
+          });
+        };
+        cell.appendChild(input);
+        cell.appendChild(document.createTextNode(' '));
+        cell.appendChild(button);
+        body.appendChild(row);
+      });
+    })
+    .catch(function(){
+      // fallback: link to tree
+      body.innerHTML = '<div class="lg-r"><span class="lg-a">See all .karmamodel files</span><span class="lg-b">Models hosted on Hugging Face</span><span class="lg-c"><a href="https://huggingface.co/cphr/KarmaPro/tree/main" rel="noopener">open tree</a></span></div>';
+    });
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m];}); }
+  function copyText(text){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(text).catch(function(){ return fallbackCopy(text); });
+    }
+    return Promise.resolve(fallbackCopy(text));
+  }
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly','');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+
+</body>
+</html>

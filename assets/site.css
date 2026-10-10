@@ -72,6 +72,13 @@ h1,h2{margin:0;font-family:var(--disp);font-weight:700;letter-spacing:-.04em;lin
   color:var(--ink);padding:8px 14px;font-weight:700;
 }
 .top-cta:hover{background:var(--paper);color:var(--ink)}
+.badge{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--line-2);color:var(--faint);
+  padding:6px 10px;display:inline-flex;align-items:center;gap:6px;
+}
+.badge::before{content:"";width:6px;height:6px;background:var(--accent);display:inline-block}
+.badge:hover{color:var(--accent);border-color:var(--accent)}
 
 /* ── hero ─────────────────────────────────── */
 .hero{padding:76px 26px 0}
