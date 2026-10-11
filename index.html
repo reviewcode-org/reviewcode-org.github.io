@@ -96,11 +96,11 @@
         <span>Capability</span><span>What it does</span><span>Where you see it</span>
       </div>
 
-      <div class="lg-r"><span class="lg-a">Inter-procedural taint</span><span class="lg-b">Follows a value from its source to the sink that consumes it, across function boundaries and across files.</span><span class="lg-c">Dataflow diagram</span></div>
-      <div class="lg-r"><span class="lg-a">Per-language AST</span><span class="lg-b">A parser per language, so it knows what a loop, a class method and a function body are. Not regex.</span><span class="lg-c">Source viewer, complexity</span></div>
+      <div class="lg-r"><span class="lg-a">Inter-procedural taint</span><span class="lg-b">Follows a value from its source to the sink that consumes it, across function boundaries and across files.</span><span class="lg-c">Dataflow diagram, Findings list</span></div>
+      <div class="lg-r"><span class="lg-a">Per-language AST</span><span class="lg-b">A parser per language, so it knows what a loop, a class method and a function body are. Not regex.</span><span class="lg-c">Source viewer, complexity, Findings list</span></div>
       <div class="lg-r"><span class="lg-a">Heuristic engine</span><span class="lg-b">Matches known-dangerous constructs and reports them with the pattern it recognised.</span><span class="lg-c">Findings list</span></div>
       <div class="lg-r"><span class="lg-a">AI security scanning</span><span class="lg-b">A model reads each file and reports what it finds, alongside the deterministic results.</span><span class="lg-c">Findings list, tagged AI</span></div>
-      <div class="lg-r"><span class="lg-a">Bayesian classifier</span><span class="lg-b">Trained on patch files, scores every line on the probability that it is a defect.</span><span class="lg-c">ML heatmap</span></div>
+      <div class="lg-r"><span class="lg-a">Bayesian classifier</span><span class="lg-b">Trained on patch files, scores every line on the probability that it is a defect.</span><span class="lg-c">ML heatmap, Per file</span></div>
       <div class="lg-r"><span class="lg-a">Reachability</span><span class="lg-b">Walks the whole caller chain to the top of the tree and ends Remote, Local, or nowhere.</span><span class="lg-c">Reachability graph</span></div>
       <div class="lg-r"><span class="lg-a">External entries</span><span class="lg-b">Every untrusted input it can find, grouped and tagged Remote or Local.</span><span class="lg-c">Entries diagram</span></div>
       <div class="lg-r"><span class="lg-a">Control flow</span><span class="lg-b">A flowchart per function with cyclomatic complexity, branches and loops. Pan, zoom, click through.</span><span class="lg-c">Flow panel</span></div>
