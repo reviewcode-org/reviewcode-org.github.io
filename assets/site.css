@@ -1,8 +1,4 @@
-/* Karma Pro — design 04: "the drawing"
-   Blueprint sheet: measured grid ground, a capability ledger, a findings
-   table, annotated figures with leader-line callouts, one inverted paper
-   section. Hero typography is design 03's, unchanged.
-   Accent #ff8c00 sampled from AppIcon.icns. No JavaScript. */
+/* reviewcode.org */
 
 :root{
   --ink:#0a0b0e;
@@ -79,6 +75,11 @@ h1,h2{margin:0;font-family:var(--disp);font-weight:700;letter-spacing:-.04em;lin
 }
 .badge::before{content:"";width:6px;height:6px;background:var(--accent);display:inline-block}
 .badge:hover{color:var(--accent);border-color:var(--accent)}
+
+.top-help{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);font-weight:600;margin-left:16px;
+}
 
 /* ── hero ─────────────────────────────────── */
 .hero{padding:76px 26px 0}
@@ -235,19 +236,10 @@ h1 .outline{color:transparent;-webkit-text-stroke:1.5px var(--accent-2)}
 }
 
 /* ── inverted paper section ───────────────── */
-.paper{background:#f1efe9;color:#12140f;border-bottom:1px solid var(--line)}
-.paper .label{color:#b35c00}
-.paper .label::after{background:rgba(18,20,15,.16)}
-.paper .split-copy h2{color:#12140f}
-.paper .split-copy p{color:#4a4e45}
-.paper .split-copy b{color:#12140f}
-.paper .split-copy .tight,.paper .tight{color:#5c6055}
-.paper .tight b{color:#12140f}
 .paper code{color:#a35000}
 .shot{margin:0}
 .shot img{width:100%;height:auto;border:1px solid rgba(18,20,15,.22)}
 
-/* ── latest release (fetched) ──────────────── */
 .rls{
   display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;
   align-items:baseline;margin:0 0 20px;padding:12px 14px;

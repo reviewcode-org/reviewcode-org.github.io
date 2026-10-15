@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmarks — Karma Pro</title>
+<meta name="description" content="Comparison benchmarks of Karma Pro with other static analysis security scanning tools.">
+<meta property="og:site_name" content="reviewcode.org">
+<meta property="og:url" content="https://reviewcode.org/benchmarks/">
+<meta property="og:title" content="Benchmarks — Karma Pro">
+<meta property="og:description" content="Static analysis benchmarks comparing Karma Pro against other scanners on Java Juliet Test Suite.">
+<link rel="canonical" href="https://reviewcode.org/benchmarks/">
+<link rel="icon" href="../assets/icon-256.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PY8FQVW70F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PY8FQVW70F');
+</script>
+<style>
+.bench-wrap{max-width:1100px;margin:0 auto;padding:140px 26px 80px}
+.bench-title{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.055em;line-height:.98;margin:0 0 12px}
+.bench-sub{color:var(--mute);margin:0 0 48px;max-width:720px}
+.bench-card{background:var(--ink-2);border:1px solid var(--line-2);border-radius:18px;padding:28px;margin-bottom:40px;overflow-x:auto}
+.bench-card h2{font-size:1.6rem;letter-spacing:-.04em;margin:0 0 18px}
+.bench-table{width:100%;border-collapse:collapse;font-size:.98rem;min-width:720px}
+.bench-table thead th{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);text-align:left;padding:10px 14px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+.bench-table tbody td{padding:12px 14px;border-bottom:1px solid var(--line-1);vertical-align:top}
+.bench-table tbody tr:last-child td{border-bottom:none}
+.bench-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+.bench-ref{color:var(--mute);font-size:.98rem;line-height:1.7;margin-top:16px}
+.bench-ref a{color:var(--accent);text-decoration:none}
+.bench-ref a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="/">
+      <img src="../assets/appicon-mark.png" width="824" height="824" alt="">
+      <b>Karma<em>Pro</em></b>
+    </a>
+    <span class="handle"><span class="at">@</span>reviewcode.org</span>
+     <nav class="top-nav">
+       <a href="/#sheet">Capabilities</a>
+       <a href="/#findings">Findings</a>
+       <a href="/#graphs">Diagrams</a>
+       <a href="/#prs">Pull requests</a>
+       <a href="/#download">Install</a>
+       <a href="/#build">Build</a>
+     </nav>
+     <a class="top-cta" href="https://github.com/cphr/karmapro/releases/latest/download/Karma.pro.dmg" rel="noopener">Download</a>
+     <a class="badge" href="/models/" title="Bayesian classifier models">Models</a>
+     <a class="top-help" href="/help/" title="User guide and help">Help</a>
+   </div>
+</header>
+
+<main>
+  <section class="bench-wrap">
+    <h1 class="bench-title" style="margin-bottom:32px;">Benchmarks</h1>
+    <p style="color:var(--mute);margin:-12px 0 20px;font-size:.98rem;line-height:1.7;max-width:720px;">Comparison of Karma Pro’s C/C++ scanner against published analysers on the full Juliet Test Suite, following the methodology from Dyremark &amp; Elfstrand (2025).</p>
+    <div class="bench-card">
+      <h2>Juliet Test Suite for C/C++</h2>
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th class="num">Recall</th>
+            <th class="num">Precision</th>
+            <th class="num">F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Karma Pro</strong></td><td class="num"><strong>18.4%</strong></td><td class="num"><strong>68.6%</strong></td><td class="num"><strong>29.1%</strong></td></tr>
+          <tr><td>Clang-Tidy</td><td class="num">14.9%</td><td class="num">32.9%</td><td class="num">20.5%</td></tr>
+          <tr><td>Flawfinder</td><td class="num">6.4%</td><td class="num">38.3%</td><td class="num">11.0%</td></tr>
+          <tr><td>Cppcheck</td><td class="num">6.2%</td><td class="num">68.5%</td><td class="num">11.4%</td></tr>
+          <tr><td>Snyk Code</td><td class="num">5.7%</td><td class="num">62.6%</td><td class="num">10.4%</td></tr>
+          <tr><td>Semgrep</td><td class="num">1.6%</td><td class="num">67.1%</td><td class="num">3.1%</td></tr>
+        </tbody>
+      </table>
+      <p class="bench-ref">
+        Reference: Dyremark &amp; Elfstrand, <em>False Positives, Real Problems: Evaluating Static Analysis Tools</em> (2025). <a href="https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1968169&dswid=-3943" rel="noopener" target="_blank">https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1968169&amp;dswid=-3943</a>.
+      </p>
+
+    </div>
+
+    <p style="color:var(--mute);margin:-12px 0 20px;font-size:.98rem;line-height:1.7;max-width:720px;">Comparison of Karma Pro's C/C++ scanner against published analysers on the MITRE Top-25 subset of the Juliet Test Suite, following the methodology from Dyremark &amp; Elfstrand (2025).</p>
+    <div class="bench-card">
+      <h2>Juliet Test Suite for C/C++ MITRE Top 25</h2>
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th class="num">Recall</th>
+            <th class="num">Precision</th>
+            <th class="num">F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Karma Pro</strong></td><td class="num"><strong>20.3%</strong></td><td class="num"><strong>78.1%</strong></td><td class="num"><strong>32.2%</strong></td></tr>
+          <tr><td>Clang-Tidy</td><td class="num">17.4%</td><td class="num">50.0%</td><td class="num">25.8%</td></tr>
+          <tr><td>Cppcheck</td><td class="num">6.6%</td><td class="num">61.8%</td><td class="num">11.9%</td></tr>
+          <tr><td>Semgrep</td><td class="num">0.9%</td><td class="num">75.0%</td><td class="num">1.9%</td></tr>
+          <tr><td>Snyk</td><td class="num">4.7%</td><td class="num">62.5%</td><td class="num">8.7%</td></tr>
+          <tr><td>Flawfinder</td><td class="num">8.5%</td><td class="num">37.5%</td><td class="num">13.8%</td></tr>
+        </tbody>
+      </table>
+      <p class="bench-ref">
+        Reference: Dyremark &amp; Elfstrand, <em>False Positives, Real Problems: Evaluating Static Analysis Tools</em> (2025). <a href="https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1968169&dswid=-3943" rel="noopener" target="_blank">https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1968169&amp;dswid=-3943</a>.
+      </p>
+
+    </div>
+
+    <p class="bench-sub" style="margin-top:-16px;margin-bottom:28px;">Comparison of Karma Pro’s Java scanner against published analysers on the Juliet Test Suite v1.3 for Java, following the methodology from Alqaradaghi &amp; Kozsik (IEEE Access 2024).</p>
+    <div class="bench-card">
+      <h2>Juliet Test Suite v1.3 for Java</h2>
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th class="num">Recall</th>
+            <th class="num">Precision</th>
+            <th class="num">F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Karma Pro</strong></td><td class="num"><strong>78%</strong></td><td class="num"><strong>97%</strong></td><td class="num"><strong>85%</strong></td></tr>
+          <tr><td>PMD</td><td class="num">82%</td><td class="num">92%</td><td class="num">83%</td></tr>
+          <tr><td>Find Security Bugs (FSB)</td><td class="num">86%</td><td class="num">73%</td><td class="num">75%</td></tr>
+          <tr><td>SonarQube (Sonar)</td><td class="num">68%</td><td class="num">78%</td><td class="num">61%</td></tr>
+          <tr><td>Infer</td><td class="num">53%</td><td class="num">88%</td><td class="num">58%</td></tr>
+          <tr><td>SpotBugs (SB)</td><td class="num">49%</td><td class="num">89%</td><td class="num">52%</td></tr>
+        </tbody>
+      </table>
+      <p class="bench-ref">
+        Reference: Alqaradaghi &amp; Kozsik, <em>Comprehensive Evaluation of Static Analysis Tools for Their Performance in Finding Vulnerabilities in Java Code</em>, <strong>IEEE Access</strong> 12 (2024), 55824–55842. <a href="https://doi.org/10.1109/ACCESS.2024.3389955" rel="noopener" target="_blank">https://doi.org/10.1109/ACCESS.2024.3389955</a>.
+      </p>
+
+    </div>
+
+    <p style="color:var(--mute);margin:-12px 0 20px;font-size:.98rem;line-height:1.7;max-width:720px;">Comparison of Karma Pro’s JavaScript scanner against published analysers on the VulcaN corpus of 952 vulnerable npm package roots, following the methodology from Brito et al. (2023).</p>
+    <div class="bench-card">
+      <h2>VulcaN corpus for JavaScript</h2>
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th class="num">Recall</th>
+            <th class="num">Precision</th>
+            <th class="num">F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Karma Pro</strong></td><td class="num"><strong>45.7%</strong></td><td class="num"><strong>48.9%</strong></td><td class="num"><strong>47.2%</strong></td></tr>
+          <tr><td>ESLint (security plugin)</td><td class="num">41.3%</td><td class="num">47.3%</td><td class="num">44.1%</td></tr>
+          <tr><td>CodeQL</td><td class="num">32.0%</td><td class="num">55.2%</td><td class="num">40.5%</td></tr>
+          <tr><td>graudit</td><td class="num">20.3%</td><td class="num">28.1%</td><td class="num">23.6%</td></tr>
+          <tr><td>odgen</td><td class="num">16.7%</td><td class="num">37.0%</td><td class="num">23.0%</td></tr>
+          <tr><td>msdevskim</td><td class="num">10.3%</td><td class="num">22.0%</td><td class="num">14.1%</td></tr>
+          <tr><td>njsscan</td><td class="num">9.7%</td><td class="num">23.2%</td><td class="num">13.6%</td></tr>
+          <tr><td>appinspector</td><td class="num">6.0%</td><td class="num">9.2%</td><td class="num">7.3%</td></tr>
+          <tr><td>mosca</td><td class="num">3.0%</td><td class="num">6.1%</td><td class="num">4.0%</td></tr>
+          <tr><td>drek</td><td class="num">1.7%</td><td class="num">6.9%</td><td class="num">2.7%</td></tr>
+          <tr><td>insidersec</td><td class="num">0.7%</td><td class="num">3.8%</td><td class="num">1.1%</td></tr>
+        </tbody>
+      </table>
+      <p class="bench-ref">
+        Reference: Brito et al., <em>Study of JavaScript Static Analysis Tools for Vulnerability Detection in Node.js Packages</em>, <strong>IEEE Transactions on Reliability</strong> 72(4), 1324–1339, 2023. <a href="https://doi.org/10.1109/TR.2023.3286301" rel="noopener" target="_blank">https://doi.org/10.1109/TR.2023.3286301</a>.
+      </p>
+
+    </div>
+
+    <p style="color:var(--mute);margin:-12px 0 20px;font-size:.98rem;line-height:1.7;max-width:720px;">Comparison of Karma Pro’s Solidity scanner against published analysers on the 69-contract ICSE subset of the SmartBugs corpus, following the methodology from Durieux et al. (ICSE 2020), using the full rule set.</p>
+    <div class="bench-card">
+      <h2>SmartBugs corpus for Solidity</h2>
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th class="num">Recall</th>
+            <th class="num">Precision</th>
+            <th class="num">F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Karma Pro</strong></td><td class="num"><strong>81%</strong></td><td class="num"><strong>80%</strong></td><td class="num"><strong>81%</strong></td></tr>
+          <tr><td>Mythril</td><td class="num">43%</td><td class="num">38%</td><td class="num">40%</td></tr>
+          <tr><td>Manticore</td><td class="num">20%</td><td class="num">56%</td><td class="num">30%</td></tr>
+          <tr><td>Oyente</td><td class="num">28%</td><td class="num">33%</td><td class="num">30%</td></tr>
+          <tr><td>Slither</td><td class="num">20%</td><td class="num">50%</td><td class="num">29%</td></tr>
+          <tr><td>Osiris</td><td class="num">20%</td><td class="num">38%</td><td class="num">26%</td></tr>
+          <tr><td>SmartCheck</td><td class="num">13%</td><td class="num">39%</td><td class="num">20%</td></tr>
+          <tr><td>Maian</td><td class="num">10%</td><td class="num">88%</td><td class="num">18%</td></tr>
+          <tr><td>Securify</td><td class="num">12%</td><td class="num">18%</td><td class="num">14%</td></tr>
+        </tbody>
+      </table>
+      <p class="bench-ref">
+        Reference: Durieux et al., <em>Empirical Review of Automated Analysis Tools on 47,587 Ethereum Smart Contracts</em>, ICSE 2020. <a href="https://doi.org/10.1145/3377811.3380364" rel="noopener" target="_blank">https://doi.org/10.1145/3377811.3380364</a>.
+      </p>
+
+    </div>
+
+    <p style="margin-top:2rem;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--faint);max-width:820px;">* Recall = TP/(TP+FN) (true positive rate, how many actual vulnerabilities were found). Precision = TP/(TP+FP) (positive predictive value, how many reported findings are correct). F1 = 2·(Precision·Recall)/(Precision+Recall) (the harmonic mean of precision and recall). The benchmarks shown here compare AST/Heuristic scanning only and do not include AI scanning or ML.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="logo small"><img src="../assets/appicon-mark.png" width="824" height="824" alt="">Karma<em>Pro</em></span>
+    <span class="ticks" aria-hidden="true">|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|</span>
+    <span><a href="https://reviewcode.org/">reviewcode.org</a></span>
+    <span>Brought to you by <a href="https://www.cipher.org.uk" rel="noopener">cipher.org.uk</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

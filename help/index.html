@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karma Pro — User Guide &amp; Help</title>
+<meta name="description" content="Karma Pro user guide and help: project navigation, source viewer, diagrams, security scanning, the Bayesian classifier, AI assistant, private wiki, pull request monitoring and package scanning.">
+<meta property="og:site_name" content="reviewcode.org">
+<meta property="og:url" content="https://reviewcode.org/help/">
+<meta property="og:title" content="Karma Pro — User Guide &amp; Help">
+<meta property="og:description" content="The complete Karma Pro user guide: navigation, diagrams, scanning engines, ML classifier, AI assistant, wiki and pull request monitoring.">
+<link rel="canonical" href="https://reviewcode.org/help/">
+<link rel="icon" href="../assets/icon-256.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PY8FQVW70F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PY8FQVW70F');
+</script>
+<style>
+.man-hero{padding:64px 26px 46px;border-bottom:1px solid var(--line)}
+.man-hero .wrap{max-width:var(--max)}
+.man-title{font-size:clamp(2rem,5vw,3.6rem);letter-spacing:-.05em;line-height:1;margin:0}
+.man-lede{max-width:70ch;margin:22px 0 0;font-size:1.08rem;color:var(--mute)}
+.man-lede strong{color:var(--paper);font-weight:600}
+.man-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:56px;align-items:center}
+.man-hero figure{margin:0}
+.man-hero figure img{width:320px;height:288px;border:1px solid var(--line-2)}
+.man-hero figcaption{margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+
+.man-shell{display:grid;grid-template-columns:262px minmax(0,1fr);gap:60px;max-width:var(--max);margin:0 auto;padding:52px 26px 96px;align-items:start}
+
+.man-toc{position:sticky;top:80px;max-height:calc(100vh - 104px);overflow:auto;padding-right:6px}
+.man-toc .toc-t{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 12px;padding-bottom:12px;border-bottom:1px solid var(--line-2);
+}
+.man-toc a{
+  display:block;font-size:.92rem;color:var(--mute);padding:7px 0 7px 13px;
+  border-left:1px solid var(--line);line-height:1.4;transition:color .14s,border-color .14s;
+}
+.man-toc a:hover,.man-toc a.active{color:var(--accent);border-left-color:var(--accent)}
+.man-toc a .tn{font-family:var(--mono);font-size:11px;color:var(--faint);margin-right:9px}
+.man-toc a:hover .tn,.man-toc a.active .tn{color:var(--accent-2)}
+
+.man-body{min-width:0}
+.man-sec{margin:0 0 52px;scroll-margin-top:84px}
+.man-sec:last-child{margin-bottom:0}
+.man-sec h2{
+  font-family:var(--disp);font-weight:700;font-size:clamp(1.45rem,3.2vw,2.05rem);
+  letter-spacing:-.04em;line-height:1.12;margin:0 0 20px;padding-bottom:14px;
+  border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline;
+}
+.man-sec h2 .num{
+  font-family:var(--mono);font-size:.62em;font-weight:500;color:var(--accent);
+  border:1px solid var(--line-2);padding:3px 8px;letter-spacing:.02em;
+}
+.man-body p{margin:0 0 16px;color:var(--mute);font-size:1.02rem;line-height:1.68}
+.man-body p.lead{margin-bottom:20px}
+.man-body p:last-child{margin-bottom:0}
+.man-body strong{color:var(--paper);font-weight:600}
+.man-body em{color:var(--paper);font-style:italic}
+.man-body code{
+  font-family:var(--mono);font-size:.85em;color:var(--accent-2);
+  background:rgba(255,140,0,.07);border:1px solid var(--line);padding:1px 6px;
+}
+.man-body a{color:var(--accent)}
+.man-body a:hover{color:var(--accent-2)}
+
+.man-body ul{list-style:none;margin:0 0 18px;padding:0}
+.man-body li{position:relative;padding-left:26px;margin:0 0 10px;color:var(--mute);font-size:1rem;line-height:1.66}
+.man-body li::before{
+  content:"";position:absolute;left:7px;top:.6em;width:7px;height:7px;
+  background:var(--accent);transform:rotate(45deg);
+}
+.man-body li strong{color:var(--paper);font-weight:600}
+.man-body li em{color:var(--paper);font-style:italic}
+.man-body ul ul{margin:10px 0 6px}
+.man-body ul ul li{padding-left:24px;font-size:.97rem}
+.man-body ul ul li::before{width:5px;height:5px;background:var(--line-2);top:.62em}
+.man-body ul ul li:hover::before{background:var(--accent-2)}
+
+.man-note{
+  margin:0;padding:20px 22px;border:1px solid var(--line-2);
+  background:rgba(16,19,24,.7);font-family:var(--mono);font-size:12px;
+  line-height:1.8;color:var(--faint);
+}
+.man-note b{color:var(--paper);font-weight:500}
+.man-note a{color:var(--accent)}
+.man-note p{margin:0;font-size:12px;color:var(--faint)}
+.man-note p + p{margin-top:6px}
+
+@media (max-width:820px){
+  .man-hero-grid{grid-template-columns:1fr;gap:34px;align-items:start}
+}
+@media (max-width:960px){
+  .man-shell{grid-template-columns:1fr;gap:34px;padding-top:34px}
+  .man-toc{position:static;max-height:none;border:1px solid var(--line-2);background:rgba(16,19,24,.7);padding:20px}
+  .man-toc .toc-t{border-bottom-color:var(--line)}
+}
+@media (max-width:560px){
+  .man-sec h2{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="/">
+      <img src="../assets/appicon-mark.png" width="824" height="824" alt="">
+      <b>Karma<em>Pro</em></b>
+    </a>
+    <span class="handle"><span class="at">@</span>reviewcode.org</span>
+    <nav class="top-nav">
+      <a href="/#sheet">Capabilities</a>
+      <a href="/#findings">Findings</a>
+      <a href="/#graphs">Diagrams</a>
+      <a href="/#prs">Pull requests</a>
+      <a href="/#download">Install</a>
+      <a href="/#build">Build</a>
+    </nav>
+    <a class="top-cta" href="https://github.com/cphr/karmapro/releases/latest/download/Karma.pro.dmg" rel="noopener">Download</a>
+    <a class="badge" href="/models/" title="Bayesian classifier models">Models</a>
+    <a class="top-help" href="/help/" title="User guide and help">Help</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="man-hero">
+    <div class="wrap">
+      <div class="man-hero-grid">
+        <div class="man-hero-copy">
+          <p class="kicker">Documentation</p>
+          <h1 class="man-title">User Guide &amp; <em>Help</em></h1>
+          <p class="man-lede">
+            Welcome to <strong>Karma Pro</strong>'s user guide, an advanced static analysis,
+            machine-learning vulnerability classification code security review application.
+          </p>
+        </div>
+        <figure>
+          <img src="HelpSplash.jpg" width="320" height="288" alt="Karma Pro splash screen.">
+          <figcaption>Karma Pro</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="man-shell">
+
+    <nav class="man-toc" aria-label="Contents">
+      <p class="toc-t">Contents</p>
+      <a href="#s1"><span class="tn">01</span>Getting Started &amp; Project Navigation</a>
+      <a href="#s2"><span class="tn">02</span>Source Viewer &amp; Code Navigation</a>
+      <a href="#s3"><span class="tn">03</span>Diagrams: Control Flow &amp; Data Flow</a>
+      <a href="#s4"><span class="tn">04</span>Security Scanning &amp; Analysis</a>
+      <a href="#s5"><span class="tn">05</span>Bayesian Classifier &amp; ML</a>
+      <a href="#s6"><span class="tn">06</span>Security Bugs Tracker</a>
+      <a href="#s7"><span class="tn">07</span>AI Assistant</a>
+      <a href="#s8"><span class="tn">08</span>Private Research Wiki</a>
+      <a href="#s9"><span class="tn">09</span>Pull Request Monitoring</a>
+      <a href="#s10"><span class="tn">10</span>Scan Project's Packages</a>
+    </nav>
+
+    <article class="man-body">
+
+      <!-- 1 -->
+      <section class="man-sec" id="s1">
+        <h2><span class="num">01</span>Getting Started &amp; Project Navigation</h2>
+        <ul>
+          <li><strong>Opening Files &amp; Workspaces</strong>: Use <strong>Open...</strong> project directory onto the Karma Pro window to load it into the sidebar file tree.</li>
+          <li><strong>Language Filtering</strong>: Karma Pro supports 14 primary languages: <strong>C, C++, Java, C#, Go, Kotlin, Ruby, Python, PHP, Cocoa (Objective-C), Rust, Solidity, Javascript and Swift</strong>, plus an <strong>All Languages</strong> option. Use the language dropdown in the toolbar to isolate files by language.</li>
+          <li><strong>File Search</strong>: Use the built-in file search window (<strong>Find in Files...</strong>) to quickly query filenames and navigate across large codebases with Find in Files and search for text within the currently open file.</li>
+        </ul>
+      </section>
+
+      <!-- 2 -->
+      <section class="man-sec" id="s2">
+        <h2><span class="num">02</span>Source Viewer, Syntax Highlighting &amp; Code Navigation</h2>
+        <ul>
+          <li><strong>Syntax Highlighting</strong>: Custom tokenisers and highlighters provide distinct color schemes for keywords, strings, comments, and identifiers across all supported languages.</li>
+          <li><strong>Clickable Functions</strong>: Function names defined in source files are automatically underlined and linked. Clicking a function name jumps directly to its definition and instantly opens its call graph and dataflow in the bottom pane.</li>
+          <li><strong>Right-Click (Context) Menu</strong>: Right-click anywhere in the source viewer to open the context menu. The available actions adapt to what is under the cursor:
+            <ul>
+              <li><strong>Focus on &lt;function&gt;</strong>: Shown when you right-click a function/method name, highlights the current function and it displays callers and callees overlayed on the source viewer so it is easier to navigate through the source code between functions/methods.</li>
+              <li><strong>Show Flow Diagram for &lt;function&gt;</strong>: shown when you right-click a function/method name. Opens that function's interactive <strong>control-flow flowchart</strong> (cyclomatic complexity, <code>if</code>/<code>else</code> branches, loops) in its own window.</li>
+              <li><strong>Follow the variable '&lt;name&gt;'</strong>: shown when you right-click an identifier. Opens the <strong>variable-flow diagram</strong>: the enclosing function is drawn as a flowchart with every statement that uses the variable <strong>highlighted</strong>. When the variable is passed as an argument to a function defined elsewhere in the project, a <strong>callee box</strong> is added showing only the lines where the mapped parameter is used, and this expands recursively across files. Blue <strong>"call"</strong> arrows leave the call statement and purple <strong>"return"</strong> arrows rejoin the caller at the statement after the call. Click any statement or source line in the diagram to jump straight to it.</li>
+              <li><strong>Backtrace Analyser…</strong>: opens the <strong>Backtrace Analyser</strong>. Paste a crash/stack trace (from the debugger, a log, or a file such as <code>stacktrace.txt</code>) and click <strong>Analyse</strong> Karma Pro parses the frames and renders a clickable left-to-right <strong>call-stack diagram</strong>. Frames are resolved relative to the currently open project, click a frame to open its source line. Frames that cannot be resolved are shown in red (the trace must originate from the open project).</li>
+              <li><strong>(AI) How to fix it</strong>: sends the line under the cursor to the <strong>AI Assistant</strong> and asks for guidance on fixing the issue on that line (for example, how to remediate a vulnerability flagged by the scanner). Requires the AI Assistant to be connected to OpenRouter with an API key, or Ollama (see section 7).</li>
+              <li><strong>Simulate &lt;function&gt; in the Debugger</strong> experimental: shown when you right-click a function/method name. Opens the <strong>Karma Pro Debugger</strong>, a lightweight dynamic simulator that steps through the selected function line by line. Right-click a function and choose this item to begin, the window opens scoped to just that function, with the current line highlighted. Use <strong>Step Over</strong>, <strong>Step Into</strong>, <strong>Step Back</strong> and <strong>Reset</strong> at the top of the window to control execution, or <strong>Play</strong> to run automatically. The debugger follows calls into functions defined elsewhere in the open project, switching the source view to the callee and returning when the call completes. Parameters shown are editable values you can change before stepping. The simulation is approximate and may not cover every language construct.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 3 -->
+      <section class="man-sec" id="s3">
+        <h2><span class="num">03</span>Diagrams: Control Flow &amp; Data Flow</h2>
+        <ul>
+          <li><strong>Control Flow Diagrams</strong>: Visualizes cyclomatic complexity, conditional branches (<code>if</code>/<code>else</code>), and loops (<code>while</code>/<code>for</code>) as an interactive flowchart (<code>FlowChartView</code>).</li>
+          <li><strong>Dataflow Analysis</strong>: Traces variable assignments, function parameter taint propagation, and inter-procedural call graphs within the same file to reveal how untrusted input reaches critical sinks.</li>
+          <li><strong>Find external entries</strong>: scans the whole project and lists every place where the application receives input from outside, remote-facing receive APIs such as HTTP request parameters, deep links, push payloads, web/client responses, and blockchain transaction input, plus local sources like environment variables and command-line arguments, files. Results are grouped by category and tagged by locality (Remote, Local). Selecting an entry plots its data-flow diagram: an origin box for the locality, then the entry point and the functions the received value flows through. Rows show project-relative paths and clicking a graph node jumps to the exact source line in the source viewer.</li>
+          <li><strong>Show reachability of 'function'</strong> right-click opens a diagram of the function's or method's position in the currently open project. It walks the full caller list, every function that calls it, each of those callers' own callers, and so on, all the way up to the top, where a box shows where that it ends: Remote, Local or if no entry point reaches it at all, an amber topmost box confirming the end of the walk.</li>
+          <li><strong>Complexity distribution</strong> window you see a scatter plot where every source file's functions are laid out left-to-right in source order (X axis) with their cyclomatic complexity measured on the Y axis. Each function is a colour-coded point labelled with its complexity number. Hover any point to see its file, function name, line and complexity, or click it to jump straight to that function in the source viewer. Note in large projects it can be a bit slow to plot.</li>
+        </ul>
+      </section>
+
+      <!-- 4 -->
+      <section class="man-sec" id="s4">
+        <h2><span class="num">04</span>Security Scanning &amp; Vulnerability Analysis</h2>
+        <ul>
+          <li><strong>Multi-Language Security Scanner</strong>: Karma Pro parses source code using robust tokenizers, AST parsers, and inter-procedural data-flow analysis, performing precise taint tracking rather than simple regex matching.</li>
+          <li><strong>Supported Languages</strong>: The security analyser covers 14 primary programming languages with deep AST integration: <strong>C, C++, Objective-C (Cocoa), Java, C#, Go, Kotlin, Ruby, Python, PHP, Rust, Solidity, Swift</strong>.</li>
+          <li><strong>Cross-File Taint Analysis &amp; Project Index</strong>: Karma Pro builds a project-wide dependency index across all source files. When taint flows originate from a source function defined in a <em>different file</em> than the finding's sink, the vulnerability scanner marks it as <strong>Cross-file</strong> (<code>Yes</code> / orange indicator), allowing multi-file modular projects, imports, and requires to be analysed holistically.</li>
+          <li><strong>Vulnerability Categories</strong>: Detects common exploitation vectors including Buffer Overflow, Format String vulnerabilities, Command Injection, SQL Injection, Path Traversal, Server-Side Request Forgery (SSRF), Insecure Deserialization, Weak Cryptography / Randomness, Hardcoded Secrets, Log Injection, XSS (HTML Injection), Race Conditions / TOCTOU, and (for Solidity) Reentrancy, tx.origin Authorization, Predictable Randomness, Unchecked External Call Return, Delegatecall to Untrusted Address, Selfdestruct to Arbitrary Address etc.</li>
+          <li><strong>Mobile Security Checks</strong>: Dedicated Android (Java) and iOS/Cocoa (Objective-C) rule sets cover platform-specific risk: WebView hardening (JavaScript bridges, file/universal access, arbitrary-loads ATS bypasses), trust-manager / hostname-verifier bypasses, raw SQL, clipboard and pasteboard leakage, UserDefaults and Keychain accessibility misconfiguration, deprecated UIWebView, JavaScript injection, notification/keyed-archiver misuse, deep-link / open-URL exposure, file-protection level, location tracking, SMS/mail composition, and privacy-sensitive contact access etc.</li>
+          <li><strong>Severity &amp; Exploitability</strong>: Findings are graded by severity (<code>Critical</code>, <code>High</code>, <code>Medium</code>, <code>Low</code>), exploitability scores, reachability (whether reachable from entry points), and precise source-to-sink taint paths.</li>
+          <li><strong>Engine Distinction</strong>: Distinguishes findings detected structurally over the parsed Abstract Syntax Tree (<strong>AST</strong>) from heuristic pattern matches (<strong>Heuristic</strong>). Note: if you also chose AI scan to be performed, you will also see AI results.</li>
+          <li><strong>Triage (AI)</strong> button sends every scanner finding to the configured AI model for a validity check, using the severity details you see in the findings list, to let the model judge whether each finding is a real vulnerability or a false positive. Findings the model confirms remain in the list helping you clear through scanner possible FPs. AI accuracy is roughly 60–80%, so it's a triage aid, not a replacement for your final review.</li>
+        </ul>
+      </section>
+
+      <!-- 5 -->
+      <section class="man-sec" id="s5">
+        <h2><span class="num">05</span>Bayesian Classifier, ML Trainer &amp; Model Import/Export</h2>
+        <ul>
+          <li><strong>Bayesian Vulnerability Classifier</strong>: A probabilistic machine-learning classifier that analyses token frequencies to evaluate code snippets for vulnerability likelihood.</li>
+          <li><strong>How the ML classifier works</strong>: Karma Pro's ML classification follows the <em><a href="https://cipher.org.uk/2026/02/08/Karma-Automated-source-code-defect-identification-method/" rel="noopener">Karma</a></em> method, an automated, source-code defect identification technique: a <strong>Bayes classifier</strong> is trained on empirical data so it can point to "interesting pieces" of code in any language. The training data comes from <strong>software patches</strong> (.patch/.diff files): in a patch, lines marked <code>-</code> are the removed (defective) lines and lines marked <code>+</code> are the added (correcting) lines. The classifier's training phase builds a model of prior probabilities, e.g. how often a given token/keyword appears in defective lines versus safe ones.</li>
+          <li><strong>At scan time</strong>, each line of code is reduced to its tokens (special characters and formatting removed), and the classifier estimates the probability the line is a defect versus not a defect using those per-token frequencies. A line is classified as a likely defect when its posterior probability of being a bug exceeds its probability of being safe. Karma Pro renders this as a <strong>confidence score</strong> and a per-file <strong>heatmap</strong>, so you get visual assistance pointing to areas of interest.</li>
+          <li><strong>ML Training Window</strong>: An interactive training suite where you can feed positive (vulnerable) and negative (safe) training samples. The classifier updates its probability models in real time.</li>
+          <li><strong>Model Persistence (Import &amp; Export)</strong>:
+            <ul>
+              <li><strong>Export Model</strong>: Save your trained Bayesian classifier weights and token distributions to a local Karma Pro file to share across teams or back up.</li>
+              <li><strong>Import Model</strong>: Load previously exported Bayesian model JSON files into Karma Pro to instantly apply pretrained classification logic.</li>
+            </ul>
+          </li>
+          <li><strong>ML Scan</strong>: Run probabilistic scans across project files to discover hidden risks alongside confirmed findings. The ML pass is <em>complementary</em> to the ruleset/AST scanner: it surfaces probabilistic candidate defects (and can catch language-agnostic "interesting" numbers, variables and functions) that hard-coded rules may miss.</li>
+        </ul>
+      </section>
+
+      <!-- 6 -->
+      <section class="man-sec" id="s6">
+        <h2><span class="num">06</span>Security Bugs Tracker Tool</h2>
+        <p class="lead">The <strong>Security bugs tracker</strong> is a built-in vulnerability tracking tool that helps you organise and work through discovered vulnerabilities.</p>
+        <ul>
+          <li><strong>Create &amp; manage reports</strong>: Add, view, edit, and delete bug reports with a title, severity, exploitability, status, description, package name, and version.</li>
+          <li><strong>Use preset templates</strong>: common vulnerability titles (SQLi, XSS, RCE, crypto, memory, mobile, cloud, business logic etc) with ready-made descriptions or write your own.</li>
+          <li><strong>Search</strong>: Filter bugs by title, description, severity, status, package, or ID.</li>
+          <li><strong>Triage</strong>: Color-coded severity and exploitability in the list and details, statuses track.</li>
+          <li><strong>Backup &amp; import</strong>: Export all reports to a .karmapro JSON backup (optionally password-protected) and import them back.</li>
+        </ul>
+        <p>Reports persist locally (survive app restarts) and live in the Karma Pro application support directory.</p>
+      </section>
+
+      <!-- 7 -->
+      <section class="man-sec" id="s7">
+        <h2><span class="num">07</span>AI Assistant</h2>
+        <p class="lead">The <strong>AI</strong> toolbar button (right of the Bugs button) opens the AI Assistant window, which connects Karma Pro to <a href="https://ollama.com/" rel="noopener">Ollama</a> or to <a href="https://openrouter.ai" rel="noopener">OpenRouter</a> so you can query large language models about the currently open project:</p>
+        <ul>
+          <li><strong>Connect</strong>: Paste your OpenRouter API key (from <code>openrouter.ai/keys</code>) into the key field and click <strong>Connect</strong>. The key is saved on your machine and remembered across launches.</li>
+          <li><strong>Model Selection</strong>: Pick any model from the dropdown (Claude, GPT-4o, Gemini, Llama, DeepSeek, Mistral, …). The list is fetched live from OpenRouter when a key is set the <strong>Refresh</strong> button re-fetches it. Your chosen model is remembered and can be changed at any time.</li>
+          <li><strong>Project Context</strong>: Every prompt is automatically anchored to the project currently open in Karma Pro, its path is included in the system message sent with each request. The AI window cannot be opened until a project folder is selected.</li>
+          <li><strong>Prompt Templates Dropdown</strong>: Ships with built-in templates. Selecting an entry pastes its text into the prompt editor at the cursor position.</li>
+          <li><strong>Managing Templates</strong>: Use <strong>Add…</strong> to create a new template (a title for the dropdown plus prompt text), <strong>Edit…</strong> to modify the selected template (built-in ones included), and <strong>Remove</strong> to delete it. All template changes are stored per-user and survive relaunches.</li>
+          <li><strong>Import / Export Prompts</strong>: <strong>Export…</strong> saves every stored prompt template (built-in and custom) to a file you can back up or share. <strong>Import…</strong> adds prompts from such a file entries that are already stored.</li>
+        </ul>
+      </section>
+
+      <!-- 8 -->
+      <section class="man-sec" id="s8">
+        <h2><span class="num">08</span>Private Research Wiki</h2>
+        <p>The <strong>Wiki</strong> toolbar button (next to Notes) opens a private research wiki shared across all projects. Write pages in a rich-text editor with a white background, hyperlink selected words instantly with the <strong>Link…</strong> button (or type <code>[[Page Name]]</code>), and click any link to open the page, creating it if it doesn't exist yet. Pages can be listed, searched, renamed and deleted, auto-save whenever their window closes, and the whole wiki can be backed up to a <code>.karmawiki</code> archive, optionally encrypted with a password and imported back later.</p>
+      </section>
+
+      <!-- 9 -->
+      <section class="man-sec" id="s9">
+        <h2><span class="num">09</span>Pull Request Monitoring &amp; Review Scanning</h2>
+        <p class="lead">The <strong>Karma Pro</strong> menu bar icon can watch repositories on <strong>GitHub</strong>, <strong>GitLab</strong>, <strong>Bitbucket</strong> and <strong>Gitea/Forgejo</strong>, tell you when a pull request opens or changes, and check that pull request and scan it. Monitoring is off by default.</p>
+
+        <p><strong>Adding a public repository</strong><br>Public repositories don't need an account, token or login.</p>
+        <ul>
+          <li>Open the <strong>Karma Pro</strong> menu bar icon and choose <strong>Manage Repositories…</strong></li>
+          <li>Paste the repository URL into the <strong>Repository</strong> field.</li>
+          <li>Leave <strong>Local clone</strong> empty to use a temporary workspace, or point it at an existing local clone.</li>
+          <li>Choose a <strong>Scan depth</strong> (see below).</li>
+          <li>Optionally list <strong>base branches</strong> to watch, comma-separated, e.g. <code>main, release</code>. Empty means every branch.</li>
+          <li>Click <strong>Test Connection</strong> to confirm the repository is reachable, then <strong>Add Repository</strong>.</li>
+          <li>Choose <strong>Enable Monitoring…</strong> from the menu bar icon.</li>
+        </ul>
+        <p>The repository appears in the list. Untick <strong>Watching</strong> to pause notifications without deleting it.</p>
+
+        <p><strong>Adding a private repository</strong><br>Private repositories need a <strong>read-only token</strong>. Karma Pro never approves, comments on or posts to a pull request, so read-only scope is enough. Tokens are stored in your macOS Keychain.</p>
+        <p><strong>Accounts setup:</strong></p>
+        <ul>
+          <li>Choose the <strong>Provider</strong>.</li>
+          <li>Set the <strong>Host</strong>, prefilled for you. Change it only for a self-hosted instance e.g. gitlab.example.com, or the host of an internal Gitea install. For Gitea/Forgejo this is the field that matters, since there is no single public host.</li>
+          <li>Enter any <strong>Username</strong>. This is only a label to help you tell accounts apart.</li>
+          <li>Paste the <strong>Token</strong> and click <strong>Save Token</strong>.</li>
+        </ul>
+        <p><strong>Then add the repository</strong> as above, but tick <strong>Private repository</strong>. The status line names the account that will be used, e.g. <em>uses account "test" on github.com</em>.</p>
+        <p><strong>Several accounts on one provider:</strong> save more than one account per provider and choose per repository which one watches it, so two private repositories belonging to different accounts are monitored independently. The <strong>Account</strong> dropdown appears under the URL as soon as a private repository has more than one saved account that can reach it, listing only accounts whose provider <em>and</em> host match the URL, shown as test (github.com). The <strong>Account</strong> column in the repository list shows which account each private repository polls with.</p>
+
+        <p><strong>What monitoring does</strong><br>Karma Pro polls each watched repository every <strong>15 minutes</strong> and compares the result against the previous poll.</p>
+        <ul>
+          <li>A pull request is announced when it <strong>opens</strong>, and again when it <strong>changes</strong> — including a <strong>force-push</strong>, recognised by head commit rather than by title, so a rewritten pull request is not silently missed.</li>
+          <li>At most <strong>5</strong> pull requests are announced per poll, the rest are carried to the next.</li>
+          <li>A pull request you <strong>Ignore</strong> is not announced again until it is force-pushed to new commits.</li>
+          <li><strong>Alert style</strong> is <strong>Off</strong>, <strong>Notification</strong>, or <strong>Notification + Sound</strong>.</li>
+          <li>With <strong>Off</strong>, polling stops and the menu bar icon fades, so you can see that nothing is being watched.</li>
+        </ul>
+        <p><strong>Notification actions.</strong> <strong>Review</strong> checks the pull request out and scans it, it is the <em>only</em> action, so dismissing a notification or letting it time out never starts a review. <strong>Not Now</strong> dismisses it and leaves it reviewable later. <strong>Ignore</strong> stops alerting until the pull request is force-pushed.</p>
+
+        <p><strong>Reviewing a pull request</strong><br>Choosing <strong>Review</strong>, from a notification, or from the banner on a repository you are watching, prepares a workspace and scans it if you choose to do so.</p>
+        <ul>
+          <li><strong>Scan</strong>: base and head are both scanned and the findings compared, so the report shows what this pull request <strong>introduced</strong> rather than what the project already contained. Findings that shift line number because of edits elsewhere in the diff are matched to their original instead of reported as new.</li>
+          <li><strong>Diff</strong>: changed files open side by side, base against head, with findings shown against them.</li>
+          <li><strong>Report</strong>: <strong>Report</strong> produces a saveable Markdown document with the pull request's author, branches, head commit, link, files changed and last updated time, plus the findings the scan introduced.</li>
+        </ul>
+        <p><strong>Scan depth</strong> is chosen per repository when you add it:</p>
+        <ul>
+          <li><strong>Changed files only</strong> Only the files this pull request adds or modifies, fastest and smallest. Large repositories or a first look. Cross-file analysis cannot follow taint into files it never fetched, so some findings are missing.</li>
+          <li><strong>Full project</strong> The whole project at the head commit, slower and larger. When the change touches shared code and you need cross-file taint analysis and reachability to work normally.</li>
+        </ul>
+        <p><strong>Closing a review</strong>: <strong>Close Review</strong> ends the session, clears the file tree and every pane, and removes the on-disk checkouts. Checkouts and findings are cached between reviews for speed; <strong>Manage Repositories</strong> shows the cache size and has <strong>Clear Cache</strong>, which is refused while a review is open, when you are not reviewing however you clear the local cache.</p>
+      </section>
+
+      <!-- 10 -->
+      <section class="man-sec" id="s10">
+        <h2><span class="num">10</span>Scan Project's Packages</h2>
+        <p class="lead">The <strong>Packages &gt; Scan project's packages</strong> menu checks the project's own dependencies for known vulnerabilities. A project folder must be open, otherwise the scan does not start.</p>
+        <ul>
+          <li><strong>Auto-detection</strong>: manifests and lockfiles are found automatically npm/yarn/pnpm, PyPI, Cargo, Go, RubyGems, Composer, Maven/Gradle, NuGet and Swift Package Manager. Unsupported projects are reported as such.</li>
+          <li><strong>Scan</strong>: click <strong>Scan</strong> to query every resolved package version against <strong>api.osv.dev</strong>. Results are listed by severity with the package, file and line.</li>
+          <li><strong>Results</strong>: click a row to open the packages file at the line, <strong>Ignore issue</strong> hides a finding and <strong>Export Scan</strong> saves the shown findings as a SARIF report.</li>
+          <li><strong>(AI) Is it vulnerable?</strong>: right-click a finding to send the question to the AI Assistant, using whichever model is currently selected.</li>
+        </ul>
+      </section>
+
+      <div class="man-note">
+        <p>Karma Pro should work from macOS 12.0 (Monterey) and newer versions.</p>
+      </div>
+
+    </article>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="logo small"><img src="../assets/appicon-mark.png" width="824" height="824" alt="">Karma<em>Pro</em></span>
+    <span class="ticks" aria-hidden="true">|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|—|</span>
+    <span><a href="https://reviewcode.org/">reviewcode.org</a></span>
+    <span>Brought to you by <a href="https://www.cipher.org.uk" rel="noopener">cipher.org.uk</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.man-toc a'));
+  var sections = links.map(function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+  if (!sections.length || !('IntersectionObserver' in window)) return;
+
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove('active'); });
+      var active = byId[e.target.id];
+      if (active) active.classList.add('active');
+    });
+  }, { rootMargin: '-84px 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(function (s) { io.observe(s); });
+})();
+</script>
+
+</body>
+</html>
